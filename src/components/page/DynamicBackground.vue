@@ -9,9 +9,9 @@
 export default {
 	name: 'DynamicBackground',
 	data () {
-	  return {
-		publicPath: process.env.BASE_URL
-	  }
+		return {
+			publicPath: process.env.BASE_URL
+		}
 	}
 }
 
