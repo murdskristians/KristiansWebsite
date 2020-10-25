@@ -1,19 +1,21 @@
 <template>
 	<div id="app">
-		<StaticBackground class="st_fadeable" :class="{ fade : menuOpen }" />
-		<router-view id="page" class="st_fadeable" :class="{ fade : menuOpen }" />
-		<HexNav />
+		<DynamicBackground />
+		<div id="appContent">		
+			<router-view id="page" class="st_fadeable" :class="{ fade : menuOpen }" />
+			<HexNav />
+		</div>
 	</div>
 </template>
 
 <script>
-import { HexNav, StaticBackground } from '@/components/page/'
+import { HexNav, DynamicBackground } from '@/components/page/'
 
 export default {
 	name: 'App',
 	components: {
 		HexNav,
-		StaticBackground
+		DynamicBackground
 	},
 	mounted: function() {
 		this.$st.App = this;
@@ -226,11 +228,18 @@ p {
 }
 
 #app {
+	width:100%;
+	height:100%;
+	position:relative;
+}
+
+#appContent {
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: $black;
+	position: relative;
+	z-index:2;	
 }
 
 #page {
@@ -256,4 +265,5 @@ p {
 	background-color: rgba($blue, .75);
 	border-radius: $border-radius;
 }
+
 </style>
