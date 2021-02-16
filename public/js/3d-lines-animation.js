@@ -1,4 +1,4 @@
-var mouseX = 0, mouseY = 0,
+let mouseX = 0, mouseY = 0,
 
             windowHalfX = window.innerWidth / 2,
             windowHalfY = window.innerHeight / 2,
@@ -20,7 +20,7 @@ var mouseX = 0, mouseY = 0,
                 /*
                  *   Define variables
                  */
-                var container, separation = 1000, amountX = 50, amountY = 50, color = 0xffffff,
+                let container, separation = 1000, amountX = 50, amountY = 50, color = 0xffffff,
                 particles, particle;
 
                 container = document.getElementById("canvas");
@@ -39,8 +39,8 @@ var mouseX = 0, mouseY = 0,
 
                
 
-                var PI2 = Math.PI * 2;
-                var material = new THREE.SpriteCanvasMaterial( {
+                let PI2 = Math.PI * 2;
+                let material = new THREE.SpriteCanvasMaterial( {
 
                     color: color,
                     opacity: 0.5,
@@ -54,12 +54,12 @@ var mouseX = 0, mouseY = 0,
 
                 } );
 
-                var geometry = new THREE.Geometry();
+                let geometry = new THREE.Geometry();
 
                 /*
                  *   Number of particles
                  */
-                for ( var i = 0; i < 150; i ++ ) {
+                for ( let i = 0; i < 150; i ++ ) {
 
                     particle = new THREE.Sprite( material );
                     particle.position.x = Math.random() * 2 - 1;
@@ -79,7 +79,7 @@ var mouseX = 0, mouseY = 0,
                  *   Lines
                  */
 
-                var line = new THREE.Line( geometry, new THREE.LineBasicMaterial( { color: color, opacity: 0.2 } ) );
+                let line = new THREE.Line( geometry, new THREE.LineBasicMaterial( { color: color, opacity: 0.2 } ) );
                 scene.add( line );
 
                 document.addEventListener( 'mousemove', onDocumentMouseMove, false );
