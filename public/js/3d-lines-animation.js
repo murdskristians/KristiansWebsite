@@ -1,4 +1,4 @@
-let mouseX = 0, mouseY = 0,
+var mouseX = 0, mouseY = 0,
 
             windowHalfX = window.innerWidth / 2,
             windowHalfY = window.innerHeight / 2,
@@ -9,9 +9,21 @@ let mouseX = 0, mouseY = 0,
 
             camera, scene, renderer;
 
-            init();
-            animate();
+            var canavasCheckDelay = 300;
+            var canvasCheckTimeout = setTimeout(whenCanvasReady, canavasCheckDelay);
 
+            function whenCanvasReady() {
+                if (canvasCheckTimeout) {
+                    clearTimeout(canvasCheckTimeout);
+                }
+                var container = document.getElementById("canvas");
+                if (container) {
+                    init();
+                    animate();
+                } else {
+                    canvasCheckTimeout = setTimeout(whenCanvasReady, canavasCheckDelay);
+                }
+            }
 
 
             function init() {
@@ -20,10 +32,10 @@ let mouseX = 0, mouseY = 0,
                 /*
                  *   Define variables
                  */
-                let separation = 1000, amountX = 50, amountY = 50, color = 0xffffff,
+                var container, separation = 1000, amountX = 50, amountY = 50, color = 0xffffff,
                 particles, particle;
 
-                const container = document.getElementById("canvas");
+                container = document.getElementById("canvas");
 
 
                 camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
@@ -39,8 +51,8 @@ let mouseX = 0, mouseY = 0,
 
                
 
-                let PI2 = Math.PI * 2;
-                let material = new THREE.SpriteCanvasMaterial( {
+                var PI2 = Math.PI * 2;
+                var material = new THREE.SpriteCanvasMaterial( {
 
                     color: color,
                     opacity: 0.5,
@@ -54,12 +66,12 @@ let mouseX = 0, mouseY = 0,
 
                 } );
 
-                let geometry = new THREE.Geometry();
+                var geometry = new THREE.Geometry();
 
                 /*
                  *   Number of particles
                  */
-                for ( let i = 0; i < 150; i ++ ) {
+                for ( var i = 0; i < 150; i ++ ) {
 
                     particle = new THREE.Sprite( material );
                     particle.position.x = Math.random() * 2 - 1;
@@ -79,7 +91,7 @@ let mouseX = 0, mouseY = 0,
                  *   Lines
                  */
 
-                let line = new THREE.Line( geometry, new THREE.LineBasicMaterial( { color: color, opacity: 0.2 } ) );
+                var line = new THREE.Line( geometry, new THREE.LineBasicMaterial( { color: color, opacity: 0.2 } ) );
                 scene.add( line );
 
                 document.addEventListener( 'mousemove', onDocumentMouseMove, false );
